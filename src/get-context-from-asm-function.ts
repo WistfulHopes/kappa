@@ -73,7 +73,7 @@ export async function getFuncContext(func: DecompFunction): Promise<DecompFuncCo
   return result;
 }
 
-export async function findOriginalAssemblyInBuildFolder({
+export async function findOriginalAssemblyInAsmFolder({
   name,
   filePath,
 }: {
@@ -82,15 +82,15 @@ export async function findOriginalAssemblyInBuildFolder({
 }): Promise<{ asmCode: string; asmModulePath: string } | null> {
   const cModuleName = path.basename(filePath, path.extname(filePath));
 
-  const assemblyModules = await vscode.workspace.findFiles(`build/**/${cModuleName}.{s,S,asm}`);
+  const assemblyModules = await vscode.workspace.findFiles(`asm/**/${cModuleName}.{s,S,asm}`);
 
   if (assemblyModules.length === 0) {
-    console.warn(`Assembly file not found for C module "${cModuleName}" in the build folder`);
+    console.warn(`Assembly file not found for C module "${cModuleName}" in the asm folder`);
     return null;
   }
 
   if (assemblyModules.length > 1) {
-    console.warn(`Multiple assembly files found for C module "${cModuleName}" in the build folder`);
+    console.warn(`Multiple assembly files found for C module "${cModuleName}" in the asm folder`);
     return null;
   }
 

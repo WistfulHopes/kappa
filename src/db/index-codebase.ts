@@ -2,7 +2,7 @@ import * as vscode from 'vscode';
 import path from 'path';
 import { getVoyageApiKey } from '../configurations/workspace-configs';
 import { registerClangLanguage, searchCodebase, Searcher } from '../utils/ast-grep-utils';
-import { findOriginalAssemblyInBuildFolder } from '../get-context-from-asm-function';
+import { findOriginalAssemblyInAsmFolder } from '../get-context-from-asm-function';
 import { listAssemblyFunctions } from '../utils/asm-utils';
 import { database } from './db';
 
@@ -55,7 +55,7 @@ export async function indexCodebase() {
             return;
           }
 
-          const findResult = await findOriginalAssemblyInBuildFolder({
+          const findResult = await findOriginalAssemblyInAsmFolder({
             name,
             filePath: file.fsPath,
           });

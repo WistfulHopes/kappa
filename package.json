@@ -275,12 +275,11 @@
   },
   "scripts": {
     "vscode:prepublish": "yarn run package",
-    "build": "yarn format && yarn run check-types && yarn run lint && yarn run format:check && node esbuild.js",
-    "package": "yarn run check-types && yarn run lint && yarn run format:check && node esbuild.js --production",
+    "build": "yarn format && yarn run check-types && yarn run lint && node esbuild.js",
+    "package": "yarn run check-types && yarn run lint && node esbuild.js --production",
     "check-types": "tsc --noEmit",
     "lint": "eslint src",
     "format": "prettier --write .",
-    "format:check": "prettier --check .",
     "pretest": "yarn build",
     "test": "wdio run ./src/test/wdio.conf.ts"
   },
@@ -295,6 +294,7 @@
     "rxdb": "^16.15.0",
     "rxjs": "^7.8.2",
     "umap-js": "^1.4.0",
+    "vsce": "^2.15.0",
     "vscode-languageclient": "^9.0.1",
     "yaml": "^2.8.0",
     "zod": "^4.0.5"
